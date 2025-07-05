@@ -197,16 +197,35 @@ def main():
                             st.rerun()  # Refresh to show updated list
                     st.markdown("---")
 
+    # elif choice == "Search":
+    #     st.subheader("🔍 Search for Books")
+    #     keyword = st.text_input("Enter title or author")
+    #     if keyword:
+    #         results = search_book(keyword)
+    #     if results:
+    #         st.success(f"Found {len(results)} result(s).")
+    #         display_books(results)
+    #     else:
+    #         st.warning("No matching books found.")
+    
     elif choice == "Search":
         st.subheader("🔍 Search for Books")
         keyword = st.text_input("Enter title or author")
+    
+        # Initialize results as empty list
+        results = []
+    
         if keyword:
             results = search_book(keyword)
-        if results:
-            st.success(f"Found {len(results)} result(s).")
-            display_books(results)
+    
+        if keyword:  # Only show results if there was a search
+            if results:
+                st.success(f"Found {len(results)} result(s).")
+                display_books(results)
+            else:
+                st.warning("No matching books found.")
         else:
-            st.warning("No matching books found.")
+            st.info("👆 Enter a search term to begin")
 
     elif choice == "Statistics":
         st.subheader("📊 Library Statistics")
